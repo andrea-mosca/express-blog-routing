@@ -21,7 +21,7 @@ const posts = [
   {
     id: 3,
     title: "Pasta barbabietola e gorgonzola",
-    content: `La nostra ricetta della pasta barbabietola e gorgonzola vuole ricreare in questo primo piatto un abbinamento appetitoso, già proposto con la torta salata alla barbabietola! Per un pranzo veloce ma gustoso, per chi ama giocare con consistenze e colori naturali in cucina, questa pasta è perfetta! La dolcezza della barbabietola smorza il gusto deciso che caratterizza questo formaggio erborinato molto amato, un'abbinata vincente e molto gustosa. Provate un nuovo condimento per la vostra pasta e sperimentate altre sfiziose varianti:
+    content: `La nostra ricetta della pasta barbabietola e gorgonzola vuole ricreare in questo primo piatto un abbinamento routeretitoso, già proposto con la torta salata alla barbabietola! Per un pranzo veloce ma gustoso, per chi ama giocare con consistenze e colori naturali in cucina, questa pasta è perfetta! La dolcezza della barbabietola smorza il gusto deciso che caratterizza questo formaggio erborinato molto amato, un'abbinata vincente e molto gustosa. Provate un nuovo condimento per la vostra pasta e sperimentate altre sfiziose varianti:
             Pasta con barbabietola e pecorino
             Gnocchi di barbabietola
             Tagliatelle alla barbabietola con asparagi`,
@@ -43,5 +43,29 @@ const posts = [
     tags: ["Dolci", "Dolci al cioccolato", "Torte", "Ricette vegetariane", "Ricette al forno"],
   },
 ];
+const express = require("express");
+const router = express.Router();
 
-module.exports = { posts };
+// index
+router.get('/posts', function (req, res) {
+res.send('Lista dei posts');
+});
+// show
+router.get('/posts/:id', function (req, res) {
+res.send('Dettagli dei posts' + req.params.id);
+});
+// create
+router.post('/posts', function (req, res) {
+res.send('Creazione nuovo post');
+});
+// update
+router.put('/posts/:id', function (req, res) {
+res.send('Modifica integrale(sostituzione) del post ' + req.params.id);
+});
+// delete
+router.delete('/posts/:id', function (req, res) {
+res.send('Eliminazione del post ' + req.params.id);
+});
+
+
+module.exports = router;
