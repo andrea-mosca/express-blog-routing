@@ -1,15 +1,14 @@
-// * IMPORT
+// * IMPORTS
 const express = require("express");
 const app = express();
 const port = 3000;
 //  ARRAY CONTENENTE I POST
+const {posts} = require("./data/db");
+// file delle rotte dei post
 let postRouter = require("./routers/posts");
-
 // cartella public contenente gli asset statici
 app.use(express.static('public'));
 
-// * ROTTE DEI POSTS
-app.use(postRouter);
 
 // * ROTTA PRINCIPALE
 app.get("/", (req, res)=>{
@@ -19,6 +18,8 @@ app.get("/", (req, res)=>{
 app.get('/bacheca', (req, res) => {
   res.json({ posts });
 });
+// * ROTTE DEI POSTS
+app.use("/posts", postRouter);
 
 // * AVVIO SERVER
 app.listen(port, ()=>{
